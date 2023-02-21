@@ -1,18 +1,22 @@
-package com.example.demo.its;
+package com.example.demo.brg.hotel;
 
 import com.example.demo.DemoApplication;
 import com.google.gson.Gson;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 
-public class Rehlat extends HotelInterface {
+/**
+ * https://www.hotelplanner.com/.
+ */
+public class HotelPlanner extends AbstractHotel {
 
-    public Rehlat(String endPoint) {
+    public HotelPlanner(String endPoint) {
         super.endPoint = endPoint;
+        init();
     }
 
     @Override
@@ -34,6 +38,7 @@ public class Rehlat extends HotelInterface {
         DemoApplication.RESULT_SET.put("HotelPlanner", loop + " , " + currentCurrency);
     }
 
+    @Override
     public double getRoomRate() {
         Connection con = Jsoup.connect(endPoint).timeout(10000);
         Connection.Response res = null;
@@ -47,6 +52,10 @@ public class Rehlat extends HotelInterface {
         Map<String, Object> map = gson.fromJson(res.body(), Map.class);
         List<Map<String, Object>> list = (List<Map<String, Object>>) map.get("rates");
 
-        return (double) list.get(0).get("AVERAGERATE");
+        // 최저가격 찾기
+        Double minMap = list.stream().mapToDouble(m -> (Double) m.get("AVERAGERATE")).min().orElseThrow(
+            NoSuchElementException::new);
+
+        return minMap;
     }
 }

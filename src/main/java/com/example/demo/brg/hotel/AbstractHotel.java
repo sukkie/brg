@@ -1,16 +1,20 @@
-package com.example.demo.its;
+package com.example.demo.brg.hotel;
 
-public abstract class HotelInterface {
+import com.example.demo.message.LineRunnable;
 
-    double currentCurrency;
+public abstract class AbstractHotel {
 
-    int loop;
+    protected double currentCurrency;
 
-    String endPoint;
+    protected int loop;
+
+    protected String endPoint;
 
     abstract void init();
 
-    abstract void run();
+    public abstract void run();
+
+    abstract double getRoomRate();
 
     protected void sendMessage(String name, String roomRate, String url) {
         Runnable runnable = new LineRunnable(name, roomRate, url);
