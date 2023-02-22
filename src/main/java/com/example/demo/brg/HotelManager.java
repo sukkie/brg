@@ -19,9 +19,10 @@ public class HotelManager {
         // IDR Taxes and fees
         // 9,842,140
         // 2023-07-23 ~ 2023-07-27 The Stones Legian Bali Marriott Autograph Collection Hotel
-//        hotelList.add(new HotelPlanner(
-//            "https://www.hotelplanner.com/Common/Cfcs/services/rates/checkRates.htm?locale=en_US&currency=IDR&brandCode=AU&starRating=5.0&vendor=tp&hotelId=59153&aky=E505296245FD3EE1E7E090FED4CE5E9C&_dc=1676947856066&gid=0&checkin=07%2F23%2F2023&checkout=07%2F27%2F2023&numRooms=2&numAdults=2&numChildren=0&numAdults2=1&numChildren2=0&indate=07%2F23%2F2023&outdate=07%2F27%2F2023&page=1&start=0&limit=25&sort=%5B%7B%22property%22%3A%22AVERAGERATE%22%2C%22direction%22%3A%22ASC%22%7D%5D"));
-        hotelList.add(new Rehlat(
+        hotelList.add(new HotelPlanner("HotelPlanner - The Stones Legian Bali",
+            "https://www.hotelplanner.com/Common/Cfcs/services/rates/checkRates.htm?locale=en_US&currency=IDR&brandCode=AU&starRating=5.0&vendor=tp&hotelId=59153&aky=E505296245FD3EE1E7E090FED4CE5E9C&_dc=1676947856066&gid=0&checkin=07%2F23%2F2023&checkout=07%2F27%2F2023&numRooms=2&numAdults=2&numChildren=0&numAdults2=1&numChildren2=0&indate=07%2F23%2F2023&outdate=07%2F27%2F2023&page=1&start=0&limit=25&sort=%5B%7B%22property%22%3A%22AVERAGERATE%22%2C%22direction%22%3A%22ASC%22%7D%5D"));
+
+        hotelList.add(new Rehlat("Rehlat - The Stones Legian Bali",
             "https://www.rehlat.com/Hotels/getHotelPricesThread", createParamData()));
 
         // 2,990,000
@@ -31,8 +32,8 @@ public class HotelManager {
         // 14,471,600
         // IDR Subtotal
         // 2023-07-27 ~ 2023-07-31 The Westin Resort & Spa Ubud Bali Chse Certified
-//        hotelList.add(new HotelPlanner(
-//            "https://www.hotelplanner.com/Common/Cfcs/services/rates/checkRates.htm?locale=en_US&currency=IDR&brandCode=WE&starRating=5.0&vendor=tp&hotelId=F7535&aky=0BC9720E2B6887B7C43E09E4D45E0542&_dc=1676951070748&gid=0&checkin=07%2F27%2F2023&checkout=07%2F31%2F2023&numRooms=2&numAdults=2&numChildren=0&numAdults2=1&numChildren2=0&indate=07%2F27%2F2023&outdate=07%2F31%2F2023&page=1&start=0&limit=25&sort=%5B%7B%22property%22%3A%22AVERAGERATE%22%2C%22direction%22%3A%22ASC%22%7D%5D"));
+        hotelList.add(new HotelPlanner("HotelPlanner - The Westin Resort",
+            "https://www.hotelplanner.com/Common/Cfcs/services/rates/checkRates.htm?locale=en_US&currency=IDR&brandCode=WE&starRating=5.0&vendor=tp&hotelId=F7535&aky=0BC9720E2B6887B7C43E09E4D45E0542&_dc=1676951070748&gid=0&checkin=07%2F27%2F2023&checkout=07%2F31%2F2023&numRooms=2&numAdults=2&numChildren=0&numAdults2=1&numChildren2=0&indate=07%2F27%2F2023&outdate=07%2F31%2F2023&page=1&start=0&limit=25&sort=%5B%7B%22property%22%3A%22AVERAGERATE%22%2C%22direction%22%3A%22ASC%22%7D%5D"));
     }
 
     public void run() {

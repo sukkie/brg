@@ -22,7 +22,8 @@ public class Rehlat extends AbstractHotel {
 
     private String sessionId;
 
-    public Rehlat(String endPoint, Map<String, String> data) {
+    public Rehlat(String hotelName, String endPoint, Map<String, String> data) {
+        super.hotelName = hotelName;
         super.endPoint = endPoint;
         this.data = data;
         this.sessionId = getSessionId();
@@ -43,20 +44,20 @@ public class Rehlat extends AbstractHotel {
     @Override
     public void init() {
         currentCurrency = getRoomRate();
-        System.out.println("init : " + currentCurrency);
+        System.out.println("init : " + hotelName + " , " + currentCurrency);
     }
 
     @Override
     public void run() {
         loop++;
         double roomRate = getRoomRate();
-        System.out.println(loop + " , " + roomRate);
+        System.out.println(hotelName + " , " + loop + " , " + roomRate);
         // 새로운 방값이 더 저렴하면
         if (roomRate < currentCurrency) {
             super.currentCurrency = roomRate;
             sendMessage("HotelPlanner", Double.toString(roomRate), this.endPoint);
         }
-        DemoApplication.RESULT_SET.put("HotelPlanner", loop + " , " + currentCurrency);
+        DemoApplication.RESULT_SET.put(hotelName, loop + " , " + currentCurrency);
     }
 
     public double getRoomRate() {
@@ -71,7 +72,7 @@ public class Rehlat extends AbstractHotel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-System.out.println(res.body());
+
         Gson gson = new Gson();
         Map<String, Object> map = gson.fromJson(res.body(), Map.class);
         List<Map<String, Object>> list = (List<Map<String, Object>>) map.get("Hotels");

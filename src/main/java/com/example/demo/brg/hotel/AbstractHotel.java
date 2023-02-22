@@ -4,6 +4,8 @@ import com.example.demo.message.LineRunnable;
 
 public abstract class AbstractHotel {
 
+    protected String hotelName;
+
     protected double currentCurrency;
 
     protected int loop;

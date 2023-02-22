@@ -14,7 +14,8 @@ import org.jsoup.Jsoup;
  */
 public class HotelPlanner extends AbstractHotel {
 
-    public HotelPlanner(String endPoint) {
+    public HotelPlanner(String hotelName, String endPoint) {
+        super.hotelName = hotelName;
         super.endPoint = endPoint;
         init();
     }
@@ -22,20 +23,20 @@ public class HotelPlanner extends AbstractHotel {
     @Override
     public void init() {
         currentCurrency = getRoomRate();
-        System.out.println("init : " + currentCurrency);
+        System.out.println("init : " + hotelName + " , " + currentCurrency);
     }
 
     @Override
     public void run() {
         loop++;
         double roomRate = getRoomRate();
-        System.out.println(loop + " , " + roomRate);
+        System.out.println(hotelName + " , " + loop + " , " + roomRate);
         // 새로운 방값이 더 저렴하면
         if (roomRate < currentCurrency) {
             super.currentCurrency = roomRate;
             sendMessage("HotelPlanner", Double.toString(roomRate), this.endPoint);
         }
-        DemoApplication.RESULT_SET.put("HotelPlanner", loop + " , " + currentCurrency);
+        DemoApplication.RESULT_SET.put(hotelName, loop + " , " + currentCurrency);
     }
 
     @Override
